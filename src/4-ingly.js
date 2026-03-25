@@ -17,5 +17,15 @@ ingly("playing") => return "playingly"
 
 ingly("swim") => return "swiming"
 */
+// Cette fonction modifie un mot donné en fonction de sa terminaison.
+// Si le mot ne se termine pas par "ing",
+// la fonction doit ajouter "ing" à la fin du mot.
+// Si le mot se termine déjà par "ing",
+// la fonction doit ajouter "ly" à la place.
+// La fonction doit retourner le mot modifié.
+// Par exemple :
+// ingly("play") => retourne "playing"
+// ingly("playing") => retourne "playingly"
+// ingly("swim") => retourne "swiming"
 
 export const ingly = (word) => {};

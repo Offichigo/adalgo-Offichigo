@@ -1,4 +1,5 @@
-import { test, expect, describe} from "vitest";
+import { test, expect, describe } from "vitest";
+import { ingly } from "./4-ingly";
 
 describe("ingly", () => {
   test("adds ing if word does not end with ing", () => {
