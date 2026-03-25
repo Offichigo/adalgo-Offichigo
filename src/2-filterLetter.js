@@ -34,7 +34,9 @@ filterLetter("8", callback1, callback2)
 // filterLetter("8", callback1, callback2)
 // // doit exécuter callback2
 export const filterLetter = (arg, call, call2) => {
-  const result = "";
-  const arg = "",
-  if typeof
+  if (isNaN(arg)) {
+    return call(arg);
+  } else {
+    return call2(arg);
+  }
 };

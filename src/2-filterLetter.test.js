@@ -1,5 +1,5 @@
-import {describe, it, test, expect} from 'vitest'
-import {filterLetter} from './2-filterLetter'
+import { describe, it, test, expect } from "vitest";
+import { filterLetter } from "./2-filterLetter";
 
 describe("filterLetter", () => {
   it("calls first callback when argument is a letter", () => {
