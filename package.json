@@ -1,0 +1,19 @@
+{
+  "name": "adalgo",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "test": "vitest",
+    "test-ui": "vitest --ui"
+  },
+  "dependencies": {
+    "pnpm": "^10.33.0",
+    "vite": "^8.0.2",
+    "vitest": "^4.0.15"
+  },
+  "devDependencies": {
+    "@vitest/ui": "4.0.15"
+  }
+}
