@@ -1,4 +1,5 @@
 import { test, expect, describe, it } from "vitest";
+import { goToLevel } from "./3-goToLevel";
 
 describe("goToLevel", () => {
   test("goes up correctly", () => {
