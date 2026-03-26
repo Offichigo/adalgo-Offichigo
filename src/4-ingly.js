@@ -27,5 +27,25 @@ ingly("swim") => return "swiming"
 // ingly("play") => retourne "playing"
 // ingly("playing") => retourne "playingly"
 // ingly("swim") => retourne "swiming"
+export const inglyUpper = (word) => {
+  if (word.endsWith("ING")) {
+    return word + "LY";
+  } else {
+    return word + "ING";
+  }
+};
 
-export const ingly = (word) => {};
+export const ingly = (word) => {
+  if (!word) {
+    return "ing";
+  }
+  let wordupper = word.toUpperCase();
+  if (word === wordupper) {
+    return inglyUpper(word);
+  }
+  if (word.endsWith("ing")) {
+    return word + "ly";
+  } else {
+    return word + "ing";
+  }
+};
