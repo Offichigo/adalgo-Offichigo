@@ -1,3 +1,6 @@
+import { describe, test, expect } from "vitest";
+import { fibonacci } from "./7-fibonacci";
+
 describe("fibonacci", () => {
   test("returns empty array for 0", () => {
     expect(fibonacci(0)).toEqual([]);
