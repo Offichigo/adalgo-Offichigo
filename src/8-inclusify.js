@@ -8,4 +8,21 @@
  * Be carreful to properly handle edge cases from tests.
  * @param {string} text
  */
-export const inclusify = (text) => {};
+// \b = limite de mot
+// g = toutes les occurrences
+
+export const inclusify = (text) => {
+  text = text.replace(/\bCelles\b/g, "Celleux");
+  text = text.replace(/\bCeux\b/g, "Celleux");
+  text = text.replace(/\bElles\b/g, "Iels");
+  text = text.replace(/\bIls\b/g, "Iels");
+  text = text.replace(/\bElle\b/g, "Iel");
+  text = text.replace(/\bIl\b/g, "Iel");
+  text = text.replace(/\bcelles\b/g, "celleux");
+  text = text.replace(/\bceux\b/g, "celleux");
+  text = text.replace(/\belles\b/g, "iels");
+  text = text.replace(/\bils\b/g, "iels");
+  text = text.replace(/\belle\b/g, "iel");
+  text = text.replace(/\bil\b/g, "iel");
+  return text;
+};
