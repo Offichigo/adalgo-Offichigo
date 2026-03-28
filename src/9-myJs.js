@@ -9,8 +9,21 @@
  * @example
  *      myIncludes(['un', 'deux', 'trois'], 'trois'); // returns true
  *      myIncludes(['un', 'deux', 'trois'], 'quatre'); // returns false
+ * /**
+ * Cette fonction réimplémente le comportement de la méthode .includes()
+ * sans utiliser aucune fonction existante.
+ * @example
+ *      myIncludes(['un', 'deux', 'trois'], 'trois'); // retourne true
+ *      myIncludes(['un', 'deux', 'trois'], 'quatre'); // retourne false
  */
-export const myIncludes = (array, searchElement) => {};
+export const myIncludes = (array, searchElement) => {
+  for (let i = 0; i < array.length; i++) {
+    if (array[i] === searchElement) {
+      return true;
+    }
+  }
+  return false;
+};
 
 /**
  * This function re-implement the behavior of the .indexOf() array method
@@ -24,7 +37,14 @@ export const myIncludes = (array, searchElement) => {};
  *      myIndexOf(['un', 'deux', 'trois'], 'trois'); // returns 3
  *      myIndexOf(['un', 'deux', 'trois'], 'quatre'); // returns -1
  */
-export const myIndexOf = (array, searchElement) => {};
+export const myIndexOf = (array, searchElement) => {
+  for (let i = 0; i < array.length; i++) {
+    if (array[i] === searchElement) {
+      return i + 1;
+    }
+  }
+  return -1;
+};
 
 /**
  * This function re-implements the behavior of the .startsWith() string method
