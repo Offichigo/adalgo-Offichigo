@@ -5,17 +5,17 @@
  * @returns {string} the new output name
  */
 export const toCamelCase = (str) => {
-    const words = str.toLowerCase().split("_");
+  const words = str.toLowerCase().split("_");
 
-    const first = words.shift(); // first word stays the same
-    let result = first;
+  const first = words.shift(); // first word stays the same
+  let result = first;
 
-    for (const word of words) {
-        const capitalized = word[0].toUpperCase() + word.slice(1);
-        result += capitalized;
-    }
+  for (const word of words) {
+    const capitalized = word[0].toUpperCase() + word.slice(1);
+    result += capitalized;
+  }
 
-    return result;
+  return result;
 };
 
 /**
@@ -24,4 +24,14 @@ export const toCamelCase = (str) => {
  * @param {string} str the input name
  * @returns {string} the new output name
  */
-export const toSnakeCase = (str) => {};
+export const toSnakeCase = (str) => {
+  let result = "";
+  for (let i = 0; i < str.length; i++) {
+    if (str[i] === str[i].toUpperCase()) {
+      result += "_" + str[i].toLowerCase();
+    } else {
+      result += str[i];
+    }
+  }
+  return result;
+};
