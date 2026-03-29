@@ -1,3 +1,6 @@
+import { describe, expect, test } from "vitest";
+import { passwd_validator } from "./11-passwd_validator";
+
 describe("passwd_validator", () => {
   test("returns false if less than 6 characters", () => {
     expect(passwd_validator("l#H1@")).toBe(false);

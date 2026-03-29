@@ -17,4 +17,23 @@
  This: passwd_validator("fwjifewJ#")
  Will return: False (because there's no decimal numbers) */
 
-export const passwd_validator = () => {};
+/* Écris une fonction nommée passwd_validator qui prend une string en argument.
+ Elle retourne True si la string est un mot de passe valide, False sinon.
+ Un mot de passe valide a les caractéristiques suivantes :
+ - il contient entre 6 et 12 caractères (inclus)
+ - il contient au moins une lettre minuscule
+ - il contient au moins une lettre majuscule
+ - il contient au moins un chiffre
+ - il contient au moins un caractère spécial : $, # ou @
+ Exemples :
+ passwd_validator("l#H1@")
+ → retourne False (moins de 6 caractères)
+ passwd_validator("el3H1@f")
+ → retourne True
+ passwd_validator("fwjifewJ#")
+ → retourne False (pas de chiffre)
+*/
+export const passwd_validator = (passwd) => {
+  const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$#@]).{6,12}$/;
+  return regex.test(passwd);
+};
