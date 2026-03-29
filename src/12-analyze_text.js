@@ -29,5 +29,25 @@
  Will return:
  { letters: 0, words: 0, sentences: 0 }
 */
-
-export const analyze_text = () => {};
+export const analyze_text = (text) => {
+  let letters = 0;
+  let words = 0;
+  let sentences = 0;
+  let inWord = false; // ← ici !
+  for (let i = 0; i < text.length; i++) {
+    const char = text[i];
+    if ((char >= "a" && char <= "z") || (char >= "A" && char <= "Z")) {
+      letters++;
+      if (inWord === false) {
+        words++;
+        inWord = true;
+      }
+    } else {
+      inWord = false;
+    }
+    if (char === "." || char === "!" || char === "?") {
+      sentences++;
+    }
+  }
+  return { letters, words, sentences };
+};
