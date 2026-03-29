@@ -7,7 +7,13 @@
  * @param {{name: string; price: number}[]} gifts
  * @returns {number} total price
  */
-export const totalPrice = (gifts) => {};
+export const totalPrice = (gifts) => {
+  let result = 0;
+  for (let i = 0; i < gifts.length; i++) {
+    result = result + gifts[i].price;
+  }
+  return result;
+};
 
 /**
  * This function takes an array of gifts and returns the name of the most expensive one.
@@ -15,7 +21,20 @@ export const totalPrice = (gifts) => {};
  * @param {{name: string; price: number}[]} gifts
  * @returns {string} gift's name
  */
-export const mostExpensive = (gifts) => {};
+export const mostExpensive = (gifts) => {
+  let result = "";
+  let max = 0;
+  if (gifts.length === 0) {
+    return undefined;
+  }
+  for (let i = 0; i < gifts.length; i++) {
+    if (max < gifts[i].price) {
+      max = gifts[i].price;
+      result = gifts[i].name;
+    }
+  }
+  return result;
+};
 
 /**
  * This function takes an array of kids and returns the name of the most expensive gift
@@ -33,7 +52,24 @@ export const mostExpensive = (gifts) => {};
  * @param {{name: string; gifts: {name: string; price: number}[]}[]} kids
  * @returns {string} gift's name
  */
-export const globalMostExpensive = (kids) => {};
+export const globalMostExpensive = (kids) => {
+  let result = "";
+  let max = 0;
+  if (kids.length === 0) {
+    return undefined;
+  }
+  for (let i = 0; i < kids.length; i++)
+    for (let j = 0; j < kids[i].gifts.length; j++) {
+      if (max < kids[i].gifts[j].price) {
+        max = kids[i].gifts[j].price;
+        result = kids[i].gifts[j].name;
+      }
+    }
+  if (result === "") {
+    return undefined;
+  }
+  return result;
+};
 
 /**
  * This function takes an array of kids and return the name of the kid that has
@@ -54,7 +90,23 @@ export const globalMostExpensive = (kids) => {};
  * @param {{name: string; gifts: {name: string; price: number}[]}[]} kids
  * @returns {string} kid's name
  */
-export const preferedKid = (kids) => {};
+export const preferedKid = (kids) => {
+  let result = "";
+  let max = 0;
+  if (kids.length === 0) {
+    return undefined;
+  }
+  for (let i = 0; i < kids.length; i++) {
+    if (max < totalPrice(kids[i].gifts)) {
+      max = totalPrice(kids[i].gifts);
+      result = kids[i].name;
+    }
+  }
+  if (result === "") {
+    return undefined;
+  }
+  return result;
+};
 
 /**
  * Distributes a list of gifts among a list of kids.
@@ -142,4 +194,62 @@ export const preferedKid = (kids) => {};
  *
  * // gifts is now []
  */
-export const distributeGifts = (gifts, kids) => {};
+/**
+ * Distribue une liste de cadeaux entre une liste d'enfants.
+ *
+ * Chaque cadeau est attribué à un enfant, et **tous les cadeaux attribués sont retirés du
+ * tableau `gifts` original** (le tableau DOIT être vide à la fin de la fonction).
+ * Les enfants reçoivent les cadeaux directement dans leurs tableaux `gifts` existants.
+ *
+ * Les règles de distribution sont :
+ *  1. Un `behaviorScore` plus élevé signifie une priorité plus haute pour recevoir des cadeaux.
+ *  2. **Cependant, l'équilibre global de la valeur totale des cadeaux est prioritaire sur le comportement.**
+ *     C'est-à-dire que si donner un cadeau à un enfant avec un score plus élevé crée un grand déséquilibre,
+ *     le cadeau doit aller à l'enfant avec le total le plus bas (même avec un behaviorScore plus faible).
+ *  3. Attribuer les cadeaux les plus chers en premier (trier les cadeaux par prix décroissant).
+ *  4. Muter tous les tableaux en entrée directement :
+ *       - Retirer les cadeaux de `gifts`
+ *       - Les ajouter dans `kids[i].gifts`
+ *
+ * **Notes / Cas limites**
+ *  - Si deux enfants ont la même valeur totale de cadeaux, le behaviorScore départage.
+ *  - Un enfant peut se retrouver sans cadeaux s'il y en a moins que d'enfants.
+ *  - Si `gifts` est vide, aucune modification n'est apportée aux enfants.
+ *  - Les scores de comportement sont attendus dans l'intervalle [0, 1], mais la fonction ne le vérifie pas.
+ */
+//pseudo code
+//  Si kids est vide, retourner kids
+//  Trier gifts par prix décroissant
+// Pour chaque cadeau
+//
+//      - boucle celui qui a le total de cadeaux le plus bas
+//      - boucl si égalité de total → prendre celui avec le behaviorScore le plus élevé
+//      - Si égalité de total ET de behaviorScore → prendre le premier dans le tableau
+
+//     Ajouter le cadeau dans les gifts de cet enfant
+
+// Vider le tableau gifts (retirer tous les éléments)
+
+// Retourner kids
+export const distributeGifts = (gifts, kids) => {
+  if (kids.length === 0) return kids; //  Si kids est vide, retourner kids
+
+  gifts.sort((a, b) => b.price - a.price); //  Trier gifts par prix décroissant
+
+  for (let i = 0; i < gifts.length; i++) {
+    let min = totalPrice(kids[0].gifts);
+    let kidIndex = 0;
+    //      - boucle celui qui a le total de cadeaux le plus bas
+    for (let j = 0; j < kids.length; j++) {
+      if (min > totalPrice(kids[j].gifts)) {
+        min = totalPrice(kids[j].gifts);
+        kidIndex = j;
+      }
+    }
+
+    kids[kidIndex].gifts.push(gifts[i]);
+  }
+
+  gifts.length = 0;
+  return kids;
+}; // Vider le tableau gifts (retirer tous les éléments)

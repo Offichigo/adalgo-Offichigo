@@ -33,7 +33,7 @@ export const analyze_text = (text) => {
   let letters = 0;
   let words = 0;
   let sentences = 0;
-  let inWord = false; // ← ici !
+  let inWord = false;
   for (let i = 0; i < text.length; i++) {
     const char = text[i];
     if ((char >= "a" && char <= "z") || (char >= "A" && char <= "Z")) {
