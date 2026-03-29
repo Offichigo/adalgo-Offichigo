@@ -58,7 +58,14 @@ export const myIndexOf = (array, searchElement) => {
  *      myStartsWith('bonjour', 'bon'); // returns true
  *      myStartsWith('bonjour', 'jour'); // returns false
  */
-export const myStartsWith = () => {};
+export const myStartsWith = (str, search) => {
+  for (let i = 0; i < search.length; i++) {
+    if (str[i] !== search[i]) {
+      return false;
+    }
+  }
+  return true;
+};
 
 /**
  * This function re-implements the behavior of the .repeat() string method
@@ -72,7 +79,15 @@ export const myStartsWith = () => {};
  *      myRepeat('ha', 3); // returns 'hahaha'
  *      myRepeat('x', 0); // returns ''
  */
-export const myRepeat = () => {};
+export const myRepeat = (str, count) => {
+  let result = "";
+  for (let i = 0; i < count; i++) {
+    result = result + str;
+  }
+  {
+    return result;
+  }
+};
 
 /**
  * This function re-implements the behavior of the .join() array method
@@ -86,7 +101,18 @@ export const myRepeat = () => {};
  *      myJoin(['a', 'b', 'c'], '-'); // returns 'a-b-c'
  *      myJoin(['hello', 'world'], ' '); // returns 'hello world'
  */
-export const myJoin = () => {};
+
+export const myJoin = (array, separator) => {
+  let result = "";
+  for (let i = 0; i < array.length; i++) {
+    if (i === 0) {
+      result = result + array[i];
+    } else {
+      result = result + separator + array[i];
+    }
+  }
+  return result;
+};
 
 /**
  * This function re-implements the behavior of Object.keys()
@@ -98,7 +124,13 @@ export const myJoin = () => {};
  * @example
  *      myObjectKeys({a: 1, b: 2}); // returns ['a', 'b']
  */
-export const myObjectKeys = () => {};
+export const myObjectKeys = (obj) => {
+  let result = [];
+  for (let key in obj) {
+    result.push(key);
+  }
+  return result;
+};
 
 /**
  * This function re-implements the behavior of Object.entries()
@@ -109,6 +141,12 @@ export const myObjectKeys = () => {};
  * @returns {Array[]} An array of [key, value] pairs from the object's own enumerable properties.
  * @example
  *      myObjectEntries({a: 1, b: 2});
- *      // returns [['a', 1], ['b', 2]]
+ *       returns [['a', 1], ['b', 2]]
  */
-export const myObjectEntries = () => {};
+export const myObjectEntries = (obj) => {
+  let result = [];
+  for (let key in obj) {
+    result.push([key, String(obj[key])]);
+  }
+  return result;
+};

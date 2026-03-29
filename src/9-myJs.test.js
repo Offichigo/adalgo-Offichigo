@@ -2,6 +2,8 @@ import { suite, test, expect } from "vitest";
 import {
   myIncludes,
   myIndexOf,
+  myStartsWith,
+  myRepeat,
   myJoin,
   myObjectKeys,
   myObjectEntries,
@@ -19,6 +21,16 @@ suite("myJs", () => {
   test("myIndexOf", () => {
     expect(myIndexOf(["un", "deux", "trois"], "trois")).toBe(3);
     expect(myIndexOf(["un", "deux", "trois"], "quatre")).toBe(-1);
+  });
+
+  test("myStartsWith", () => {
+    expect(myStartsWith("bonjour", "bon")).toBe(true);
+    expect(myStartsWith("bonjour", "jour")).toBe(false);
+  });
+
+  test("myRepeat", () => {
+    expect(myRepeat("ha", 3)).toBe("hahaha");
+    expect(myRepeat("x", 0)).toBe("");
   });
   // TODO: test myIndexOf
   // TODO: test myStartsWith
@@ -39,4 +51,15 @@ suite("myJs", () => {
   });
 
   // TODO: test myObjectEntries
+  test("myObjectEntries", () => {
+    expect(myObjectEntries({ a: 1, b: 2 })).toEqual([
+      ["a", "1"],
+      ["b", "2"],
+    ]);
+    expect(myObjectEntries({})).toEqual([]);
+    expect(myObjectEntries({ x: undefined, y: null })).toEqual([
+      ["x", "undefined"],
+      ["y", "null"],
+    ]);
+  });
 });
